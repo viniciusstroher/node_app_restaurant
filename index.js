@@ -7,11 +7,11 @@ import {AppRoutes} from './routes/routes.js'
 import * as path from 'path';
 (async () => {
 	const rootPath = path.resolve('.');
-	
+
 	const db = new Database(databaseConfig['development'])
 	//inicia db - sqlite
    	await db.init()
-   	//db.loadModels(rootPath+'/models/')
+   	db.loadModels(path.join(rootPath,'/models/'))
    	//migrations
 
    	const expressServer = new express()
