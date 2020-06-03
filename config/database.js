@@ -7,7 +7,7 @@ module.exports = {
     "storage": "./database/database.sqlite",
     "host": 'localhost',
     "dialect": 'sqlite',
-    // "logging": true,
+    "logging": true,
     "operatorsAliases": false
   },
 
