@@ -25,13 +25,21 @@ node_modules\.bin\sequelize model:generate --name Restaurant --attributes name:s
 #tabela pivot Many_to_many
 node_modules\.bin\sequelize migration:generate --name restaurant-employee-vote
 
-node_modules\.bin\sequelize seed:generate --name demo-user
 
 
 
 #create migrations
 node_modules\.bin\sequelize migration:create --name=create-users
 
-
 #migrate
-node_modules\.bin\sequelize db:migrate
+node_modules\.bin\sequelize db:migrate --debug
+#desfaz migrate
+node_modules\.bin\sequelize db:migrate:undo
+
+#faz seeds
+node_modules\.bin\sequelize db:seed:all --debug
+#desfaz seefs
+node_modules\.bin\sequelize db:seed:undo:all
+
+#create seeds
+node_modules\.bin\sequelize seed:generate --name demo-employee 
