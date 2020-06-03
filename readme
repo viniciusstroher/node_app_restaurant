@@ -1,0 +1,37 @@
+#Para instalar projetos e dependencias
+npm install
+
+#Start
+npm start
+
+#para testar
+npm test
+
+#Node Version
+Feito no node v10.18.1
+
+#models
+
+sequelize migrations
+
+#start
+node_modules\.bin\sequelize init
+
+#models
+node_modules\.bin\sequelize model:generate --name Employee --attributes firstName:string,lastName:string,email:string,pwd:string
+
+node_modules\.bin\sequelize model:generate --name Restaurant --attributes name:string
+
+#tabela pivot Many_to_many
+node_modules\.bin\sequelize migration:generate --name restaurant-employee-vote
+
+node_modules\.bin\sequelize seed:generate --name demo-user
+
+
+
+#create migrations
+node_modules\.bin\sequelize migration:create --name=create-users
+
+
+#migrate
+node_modules\.bin\sequelize db:migrate
