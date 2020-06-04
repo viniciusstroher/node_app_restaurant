@@ -130,4 +130,12 @@ export default class PollRestaurantSercive {
 		let countRestaurantVotedWeek = await models.RestaurantVotes.findOne(where)
 		return countRestaurantVotedWeek
 	}
+
+	async getRestaurant(id){
+		const Op = Sequelize.Op
+		const models = this._db.sequelize.models
+
+		let restaurant = await models.Restaurant.findByPk(id)
+		return restaurant
+	}
 }
