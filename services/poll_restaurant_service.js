@@ -10,7 +10,7 @@ export default class PollRestaurantSercive {
 	async vote(employeeId,restaurantId){
 		const models = this._db.sequelize.models
 		let votedToday = await this.verifyDailyVote(employeeId)
-		let restaurantVotedInWeek = await this.isRstaurantVotedInWeek(restaurantId)
+		let restaurantVotedInWeek = await this.isRestaurantVotedInWeek(restaurantId)
 		if(!votedToday && !restaurantVotedInWeek){
 
 			await models.EmployeeRestaurantVote.create({ employeeId,restaurantId })
@@ -48,8 +48,12 @@ export default class PollRestaurantSercive {
 		    	  	order: [[this._db.sequelize.fn('COUNT', 1), 'DESC']]}
 
 		let countVote = await models.EmployeeRestaurantVote.findAll(query)
-		
-		console.log('countVote',countVote[0])
+		let anyRestaurantVotedToday = await this.isAnyRestaurantVotedToday()
+		if(countVote.length > 0 && !anyRestaurantVotedToday){
+			await models.RestaurantVotes.create({restaurantId:countVote[0].restaurantId})
+			return true
+		}
+		return false
 	}
 
 	async getRestaurantWinnerOfTheDay(){
@@ -66,7 +70,7 @@ export default class PollRestaurantSercive {
 		return countRestaurantVotedWeek
 	}
 
-	async isRstaurantVotedInWeek(restaurantId){
+	async isRestaurantVotedInWeek(restaurantId){
 		const Op = Sequelize.Op
 		const models = this._db.sequelize.models
 		const now = moment()
@@ -74,6 +78,20 @@ export default class PollRestaurantSercive {
 		let where = {where: {restaurantId:restaurantId, createdAt: {
             [Op.gt]: now.startOf('week').toDate(),
             [Op.lt]: now.endOf('week').toDate()
+        }}}
+
+		let countRestaurantVotedWeek = await models.RestaurantVotes.count(where)
+		return countRestaurantVotedWeek > 0 ? true : false
+	}
+
+	async isAnyRestaurantVotedToday(){
+		const Op = Sequelize.Op
+		const models = this._db.sequelize.models
+		const now = moment()
+
+		let where = {where: {createdAt: {
+            [Op.gt]: now.startOf('day').toDate(),
+            [Op.lt]: now.endOf('day').toDate()
         }}}
 
 		let countRestaurantVotedWeek = await models.RestaurantVotes.count(where)
