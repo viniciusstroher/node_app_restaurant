@@ -17,6 +17,26 @@ module.exports = {
       employeeId:1,
       createdAt: new Date(),
       updatedAt: new Date()
+    },{
+      name: 'Morte lenta',
+      employeeId:1,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },{
+      name: 'Marcellus',
+      employeeId:1,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },{
+      name: 'Porto dos Files',
+      employeeId:1,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },{
+      name: 'Mc Donald',
+      employeeId:1,
+      createdAt: new Date(),
+      updatedAt: new Date()
     }]);
   },
 

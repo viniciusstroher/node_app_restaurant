@@ -9,6 +9,7 @@ module.exports = {
     "dialect": 'sqlite',
     "logging": true,
     "operatorsAliases": false,
+    // transactionType: 'IMMEDIATE'
   },
 
   "test": {

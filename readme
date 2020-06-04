@@ -48,5 +48,9 @@ node_modules\.bin\sequelize seed:generate --name demo-employee
 #remake all
 node_modules\.bin\sequelize db:migrate:undo:all && node_modules\.bin\sequelize db:migrate --debug && node_modules\.bin\sequelize db:seed:all --debug
 
+#clear data
+node_modules\.bin\sequelize db:seed:undo:all --debug && node_modules\.bin\sequelize db:seed:all --debug
 
-//passar moment pra utc 00:00
+
+//data do banco esta em utc 00:00
+//passar momentjs pra utc 00:00
