@@ -1,3 +1,8 @@
+#Node Version
+Feito no node v10.18.1
+Db:sqlite usando timezone - UTC 00:00
+Basic Auth 
+
 #Para instalar projetos e dependencias
 npm install
 
@@ -7,13 +12,13 @@ npm start
 #para testar
 npm test
 
-#Node Version
-Feito no node v10.18.1
 
-#models
 
-sequelize migrations
 
+
+
+
+#SEQUELIZE ORM
 #start
 node_modules\.bin\sequelize init
 
@@ -44,13 +49,11 @@ node_modules\.bin\sequelize db:seed:undo:all
 #create seeds
 node_modules\.bin\sequelize seed:generate --name demo-employee 
 
-
 #remake all
 node_modules\.bin\sequelize db:migrate:undo:all && node_modules\.bin\sequelize db:migrate --debug && node_modules\.bin\sequelize db:seed:all --debug
 
 #clear data
 node_modules\.bin\sequelize db:seed:undo:all --debug && node_modules\.bin\sequelize db:seed:all --debug
 
-
-//data do banco esta em utc 00:00
-//passar momentjs pra utc 00:00
+#data do banco esta em utc 00:00
+#passar momentjs pra utc 00:00

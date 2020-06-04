@@ -22,7 +22,7 @@ import Logger from './lib/logger.js'
 	cron.schedule("30 11 * * *", () => {
 		Logger.log("Calculando restaurante favorito")
 		const now = moment()
-		const prs = new PollRestaurantSercive(db)
+		const prs = new PollRestaurantService(db)
 		prs.calculateRestaurantMostVotedToday(now)
 	});
 

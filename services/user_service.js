@@ -16,7 +16,8 @@ export default class UserService {
 		return await models.Employee.findOne({where:{email,pwd:pwdMD5}}) //sem crypto (mas poderia te um bcrypt/md5)
 	}
 
-	generateApiToken(){
-		return hat()
+	generateApiToken(login, password){
+		return Buffer.from([login,password].join(':')).toString('base64')
 	}
+
 }

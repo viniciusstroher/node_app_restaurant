@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import Sequelize from 'sequelize'
 import moment from 'moment'
-export default class PollRestaurantSercive {
+export default class PollRestaurantService {
 	constructor(db){
 		this._db = db
 
