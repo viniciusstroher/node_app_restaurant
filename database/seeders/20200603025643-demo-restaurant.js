@@ -4,14 +4,17 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Restaurants', [{
       name: 'Pampa burguer',
+      employeeId:1,
       createdAt: new Date(),
       updatedAt: new Date()
     },{
       name: 'Cachorroquente do bigode',
+      employeeId:2,
       createdAt: new Date(),
       updatedAt: new Date()
     },{
       name: 'Petiskeira',
+      employeeId:1,
       createdAt: new Date(),
       updatedAt: new Date()
     }]);

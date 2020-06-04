@@ -1,20 +1,17 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Restaurants', {
+    return queryInterface.createTable('RestaurantVotes', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      name: {
-        type: Sequelize.STRING
-      },
-      employeeId: {
-        type: Sequelize.INTEGER,// pessoa que cadastro seu lugar favorito 
+      restaurantId: {
+        type: Sequelize.INTEGER,
         references: {
-          model: 'Employees',
+          model: 'Restaurants',
           key: 'id'
         }
       },
@@ -29,6 +26,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Restaurants');
+    return queryInterface.dropTable('RestaurantVotes');
   }
 };

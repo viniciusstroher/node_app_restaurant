@@ -7,10 +7,6 @@ module.exports = (sequelize, DataTypes) => {
     pwd: DataTypes.STRING
   }, {});
   Employee.associate = function(models) {
-    // associations can be defined here
-    //EX: User.belongsToMany(Project, { as: 'Tasks', through: 'worker_tasks', foreignKey: 'userId' })
-
-    Employee.belongsToMany(models.Restaurant, { through: 'RestaurantsEmployeesVotes' });
 
   };
   return Employee;

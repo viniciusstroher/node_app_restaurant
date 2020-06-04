@@ -1,22 +1,22 @@
 'use strict';
 
 module.exports = {
-  up: async (queryInterface, Sequelize) => {
+   up:  async(queryInterface, Sequelize) => {
     
-    return await queryInterface.bulkInsert('RestaurantsEmployeesVotes', [{
-      EmployeeId: 1,
-      RestaurantId: 1,
+    return await queryInterface.bulkInsert('EmployeeRestaurantVotes', [{
+      employeeId: 1,
+      restaurantId: 1,
       createdAt: new Date(),
       updatedAt: new Date()
     },{
-      EmployeeId: 2,
-      RestaurantId: 1,
+      employeeId: 2,
+      restaurantId: 1,
       createdAt: new Date(),
       updatedAt: new Date()
     }]);
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('RestaurantsEmployeesVotes', null, {});
+    return queryInterface.bulkDelete('EmployeeRestaurantVotes', null, {});
   }
 };
