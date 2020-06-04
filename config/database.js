@@ -8,7 +8,7 @@ module.exports = {
     "host": 'localhost',
     "dialect": 'sqlite',
     "logging": true,
-    "operatorsAliases": false
+    "operatorsAliases": false,
   },
 
   "test": {

@@ -22,11 +22,11 @@ node_modules\.bin\sequelize model:generate --name Employee --attributes firstNam
 
 node_modules\.bin\sequelize model:generate --name Restaurant --attributes name:string
 
-#tabela pivot Many_to_many
-node_modules\.bin\sequelize migration:generate --name restaurant-employee-vote
+#tabela pivot Many_to_many - modelo   nn
+node_modules\.bin\sequelize model:generate --name EmployeeRestaurantVote --attributes employeeId:integer,restaurantId:integer
 
-
-
+#hasMany
+node_modules\.bin\sequelize model:generate --name RestaurantVoted --attributes restaurantId:integer
 
 #create migrations
 node_modules\.bin\sequelize migration:create --name=create-users
@@ -34,7 +34,7 @@ node_modules\.bin\sequelize migration:create --name=create-users
 #migrate
 node_modules\.bin\sequelize db:migrate --debug
 #desfaz migrate
-node_modules\.bin\sequelize db:migrate:undo
+node_modules\.bin\sequelize db:migrate:undo:all
 
 #faz seeds
 node_modules\.bin\sequelize db:seed:all --debug
@@ -43,3 +43,10 @@ node_modules\.bin\sequelize db:seed:undo:all
 
 #create seeds
 node_modules\.bin\sequelize seed:generate --name demo-employee 
+
+
+#remake all
+node_modules\.bin\sequelize db:migrate:undo:all && node_modules\.bin\sequelize db:migrate --debug && node_modules\.bin\sequelize db:seed:all --debug
+
+
+//passar moment pra utc 00:00
