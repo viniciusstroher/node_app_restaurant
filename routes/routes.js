@@ -2,6 +2,7 @@
 import bodyParser from 'body-parser'
 import UserService from '../services/user_service.js'
 import PollRestaurantService from '../services/poll_restaurant_service.js'
+import RestaurantService from '../services/restaurant_service.js'
 
 export class AppRoutes {
 	constructor(app,db){
@@ -19,7 +20,6 @@ export class AppRoutes {
 
 		let authMdleware =async function (req, res, next) {
   			const token = req.headers["x-access-token"] || req.headers["authorization"]
-			//if no token found, return response (without going to the next middelware)
 			if (!token) {
 				return res.status(401).send({sucess:false,msg:'Acesso negado. Necessita de token.'})
 			}
@@ -31,9 +31,11 @@ export class AppRoutes {
 			    
 			    const us = new UserService(that._db)
 		    	const authenticated = await us.auth(email,pwd)
-			    
+
 			    if (authenticated === null) {
 				    return res.status(401).send({sucess:false,msg:'Usuario invalido.'})
+				}else{
+					req.employee = authenticated
 				}
 
 			} catch (ex) {
@@ -69,10 +71,10 @@ export class AppRoutes {
 		//auth
 		this._app.getServer().post('/vote', authMdleware,async  (req, res) => {
 			
-			if(!req.body['employeeId'] || !req.body['restaurantId']){
-		    	res.send({error:"campos employeeId ou restaurantId não foram enviados"});
+			if(!req.body['restaurantId']){
+		    	res.send({error:"campos restaurantId não foram enviados"});
 		    }else{
-		    	const employeeId = req.body['employeeId']
+		    	const employeeId = req.employee.id
 		    	const restaurantId = req.body['restaurantId']
 		    	const prs = new PollRestaurantService(that._db)
 		    	const auth = await prs.vote(employeeId,restaurantId)
@@ -96,6 +98,14 @@ export class AppRoutes {
 				res.send({sucess:true,msg:"Restaurante votado", restaurant})
 			}
 
+		})
+
+		//restaurants
+		this._app.getServer().get('/restaurants', async  (req, res) => {
+			const rs = new RestaurantService(that._db)
+			const restaurants = await rs.getList()
+			res.send({sucess:true,restaurants})
+			
 		})
 	}
 }
