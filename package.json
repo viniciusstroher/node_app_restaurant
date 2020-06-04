@@ -22,6 +22,7 @@
     "hat": "0.0.3",
     "mocha": "^4.1.0",
     "moment": "^2.26.0",
+    "node-cron": "^2.0.3",
     "request": "^2.88.2",
     "sequelize-cli": "^5.5.1",
     "should": "^13.2.3",

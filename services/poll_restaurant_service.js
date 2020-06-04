@@ -54,8 +54,6 @@ export default class PollRestaurantSercive {
 		let countVote = await models.EmployeeRestaurantVote.findAll(query)
 		let anyRestaurantVotedToday = await this.isAnyRestaurantVotedToday()
 		
-		console.log("#",countVote,anyRestaurantVotedToday)
-
 		if(countVote.length > 0 && !anyRestaurantVotedToday){
 			await models.RestaurantVotes.create({restaurantId:countVote[0].restaurantId})
 			return true
