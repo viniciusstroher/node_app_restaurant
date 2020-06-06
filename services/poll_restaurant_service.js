@@ -44,7 +44,7 @@ export default class PollRestaurantService {
 		const Op = Sequelize.Op
 		const models = this._db.sequelize.models
 		const end = date.set("hour", "11").set("minute", "25")
-		
+
         const query = {where:{createdAt: {
 			            [Op.gt]: date.startOf('day').toDate(),
 			            [Op.lt]: end.toDate()
@@ -67,7 +67,7 @@ export default class PollRestaurantService {
 		const Op = Sequelize.Op
 		const models = this._db.sequelize.models
 		const now = moment()
-		const end = date.set("hour", "11").set("minute", "25")
+		const end = now.set("hour", "11").set("minute", "25")
 		
 		let where = {where: {
 				[Op.and]:[
@@ -88,7 +88,6 @@ export default class PollRestaurantService {
 		const Op = Sequelize.Op
 		const models = this._db.sequelize.models
 		const now = moment()
-		const end = date.set("hour", "11").set("minute", "25")
 		
 		let where = {where: {
 				[Op.and]:[
@@ -109,7 +108,7 @@ export default class PollRestaurantService {
 		const Op = Sequelize.Op
 		const models = this._db.sequelize.models
 		const now = moment()
-		const end = date.set("hour", "11").set("minute", "25")
+		const end = now.set("hour", "11").set("minute", "25")
 		
 		let where = {where: {createdAt: {
             [Op.gt]: now.startOf('day').toDate(),
@@ -125,7 +124,7 @@ export default class PollRestaurantService {
 		const Op = Sequelize.Op
 		const models = this._db.sequelize.models
 		const now = moment()
-		const end = date.set("hour", "11").set("minute", "25")
+		const end = now.set("hour", "11").set("minute", "25")
 		
 		let where = {where: {createdAt: {
 			// pegar de
