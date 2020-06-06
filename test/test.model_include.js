@@ -53,10 +53,15 @@ describe("Testando o serviço de Restaurante - RestaurantService",function(){
     // expect(restaurantResult).to.have.length.above(0);
   })
 
+  it("Testando o serviço de Restaurante - testando rollback",async function(){
+    await db.sequelize.models.Employee.create({name:'teste rollback',employeeId:1})
+  })
+
+
 
   afterEach(async function () {
       // await 
-      // transact.rollback()
+      await transact.rollback()
   });
 
 });
