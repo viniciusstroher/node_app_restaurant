@@ -24,13 +24,14 @@ export default class PollRestaurantService {
 		const Op = Sequelize.Op
 		const models = this._db.sequelize.models
 		const now = moment()
+		const end = now.set("hour", "11").set("minute", "25")
 
 		let where = {where:{
 						[Op.and]:[
 							{employeeId:employeeId}, 
 							{createdAt: {
 					            [Op.gt]: now.startOf('day').toDate(),
-					            [Op.lt]: now.endOf('day').toDate()
+					            [Op.lt]: end.toDate()
 					        }}
 					    ]
 					}}
@@ -42,10 +43,11 @@ export default class PollRestaurantService {
 	async calculateRestaurantMostVotedToday(date){
 		const Op = Sequelize.Op
 		const models = this._db.sequelize.models
-
+		const end = date.set("hour", "11").set("minute", "25")
+		
         const query = {where:{createdAt: {
 			            [Op.gt]: date.startOf('day').toDate(),
-			            [Op.lt]: date.endOf('day').toDate()
+			            [Op.lt]: end.toDate()
 			        }},
         		  	attributes: ['restaurantId',[this._db.sequelize.fn('COUNT',1), 'count']],
 		    	  	group: ['restaurantId'],
@@ -65,13 +67,14 @@ export default class PollRestaurantService {
 		const Op = Sequelize.Op
 		const models = this._db.sequelize.models
 		const now = moment()
-
+		const end = date.set("hour", "11").set("minute", "25")
+		
 		let where = {where: {
 				[Op.and]:[
 					{restaurantId:restaurantId}, 
 					{createdAt: {
 			            [Op.gt]: now.startOf('day').toDate(),
-			            [Op.lt]: now.endOf('day').toDate()
+			            [Op.lt]: end.toDate()
 			        }}
 			    ]
 	    	}
@@ -85,7 +88,8 @@ export default class PollRestaurantService {
 		const Op = Sequelize.Op
 		const models = this._db.sequelize.models
 		const now = moment()
-
+		const end = date.set("hour", "11").set("minute", "25")
+		
 		let where = {where: {
 				[Op.and]:[
 					{restaurantId:restaurantId}, 
@@ -105,10 +109,11 @@ export default class PollRestaurantService {
 		const Op = Sequelize.Op
 		const models = this._db.sequelize.models
 		const now = moment()
-
+		const end = date.set("hour", "11").set("minute", "25")
+		
 		let where = {where: {createdAt: {
             [Op.gt]: now.startOf('day').toDate(),
-            [Op.lt]: now.endOf('day').toDate()
+            [Op.lt]: end.toDate()
         }}}
 
 		let countRestaurantVotedWeek = await models.RestaurantVotes.count(where)
@@ -120,11 +125,12 @@ export default class PollRestaurantService {
 		const Op = Sequelize.Op
 		const models = this._db.sequelize.models
 		const now = moment()
-
+		const end = date.set("hour", "11").set("minute", "25")
+		
 		let where = {where: {createdAt: {
 			// pegar de
             [Op.gt]: now.startOf('day').toDate(),
-            [Op.lt]: now.endOf('day').toDate()
+            [Op.lt]: end.toDate()
         }}}
 
 		let countRestaurantVotedWeek = await models.RestaurantVotes.findOne(where)
