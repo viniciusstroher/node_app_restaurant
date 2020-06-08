@@ -63,3 +63,8 @@ node_modules\.bin\sequelize db:seed:undo:all --debug && node_modules\.bin\sequel
 
 #run single test
 node_modules\.bin\mocha --compilers js:babel-register test/test.model_include.js
+
+
+
+#debug es6
+node ./node_modules/babel-cli/bin/babel-node --inspect index.js
